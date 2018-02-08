@@ -1,3 +1,4 @@
+
 //© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
@@ -17,34 +18,44 @@ public class Quadratic
 	public Quadratic()
 	{
 		
-		setEquation(0,0,0);
-		rootOne = 0;
-		rootTwo = 0;
+		//setEquation(0,0,0);
+		//rootOne = 0;
+		//rootTwo = 0;
 
 	}
 
 	public Quadratic(int quadA, int quadB, int quadC)
 	{
-		rootOne = (quadA, quadB, quadC);
+		setEquation(quadA, quadB, quadC);
+		rootOne = 0;
+		rootTwo = 0;
 
 
 	}
 
 	public void setEquation(int quadA, int quadB, int quadC)
 	{
-
+		a = quadA;
+		b = quadB;
+		c = quadC;
+		
+		
 
  	}
 
 	public void calcRoots( )
 	{
-
+		
+		rootOne = (-b + Math.sqrt(b * b - 4.0 * a * c)) / (2.0 * a);
+		rootTwo = (-b - Math.sqrt(b * b - 4.0 * a * c)) / (2.0 * a);
 
 	}
 
 	public void print( )
 	{
-
+		
+		System.out.println("rootone :: " + rootOne);
+		System.out.println("roottwo :: " + rootTwo);
 
 	}
 }
