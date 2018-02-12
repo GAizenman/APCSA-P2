@@ -1,0 +1,82 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class -
+//Lab  -
+
+import static java.lang.System.*;
+import java.util.Scanner;
+
+public class CharacterAnalyzer
+{
+	private char theChar;
+
+	public CharacterAnalyzer()
+	{
+
+
+	}
+
+	public CharacterAnalyzer(char c)
+	{
+		
+		theChar = c;
+
+
+	}
+
+	public void setChar(char c)
+	{
+
+
+	}
+
+	public char getChar()
+	{
+		return theChar;
+	}
+
+	public boolean isUpper( )
+	{
+		int ascii = (int) theChar;
+		if (ascii >= 65 && ascii <= 90){
+			return true;
+		}
+		
+
+		return false;
+	}
+
+	public boolean isLower( )
+	{
+		int ascii = (int) theChar;
+
+
+
+		return false;
+	}
+	
+	public boolean isNumber( )
+	{
+		int ascii = (int) theChar;
+
+
+
+		return false;
+	}	
+
+	public int getASCII( )
+	{
+		int ascii = (int) theChar;
+		return ascii;
+	}
+
+	public String toString()
+	{
+
+
+
+
+		return ""+getChar() + " is a lowercase character. ASCII == " + getASCII() + "\n";	  
+	}
+}
