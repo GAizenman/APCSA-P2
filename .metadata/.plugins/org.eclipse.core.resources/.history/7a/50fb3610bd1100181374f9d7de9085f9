@@ -1,0 +1,24 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class -
+//Lab  -
+
+import static java.lang.System.*;
+
+import java.util.Scanner;
+
+public class Lab08g
+{
+	public static void main ( String[] args )
+	{
+		//add test cases
+		int beg = new Scanner(System.in).nextInt();
+		int end = new Scanner(System.in).nextInt();
+		LoopStats test = new LoopStats(beg, end);
+		out.println(test);
+		
+		
+					
+	}
+}
