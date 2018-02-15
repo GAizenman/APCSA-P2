@@ -16,7 +16,7 @@ public class Lab08i
 Scanner keyboard = new Scanner(System.in);
 		
 		int lol = keyboard.nextInt();
-		Prime test = new Prime(lol);
+		LoopStats test = new Prime(lol);
 		out.println(test);
 		
 		

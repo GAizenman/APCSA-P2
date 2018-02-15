@@ -9,7 +9,7 @@ import java.lang.Math;
 
 public class Prime
 {
-	private int number;
+	private double number;
 
 	public Prime()
 	{
@@ -17,14 +17,14 @@ public class Prime
 
 	}
 
-	public Prime(int num)
+	public Prime(double num)
 	{
 		
 		number = num;
 		
 	}
 
-	public void setPrime(int num)
+	public void setPrime(double num)
 	{
 		
 		number = num;

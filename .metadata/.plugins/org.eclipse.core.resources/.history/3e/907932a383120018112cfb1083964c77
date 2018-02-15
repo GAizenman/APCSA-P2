@@ -15,7 +15,7 @@ public class Lab08i
 		//add test cases
 Scanner keyboard = new Scanner(System.in);
 		
-		int lol = keyboard.nextInt();
+		double lol = keyboard.nextDouble();
 		Prime test = new Prime(lol);
 		out.println(test);
 		
