@@ -17,8 +17,11 @@ public class Lab10e
 			System.out.println("Guessing Game - How many numbers? ");
 			int haha = keyboard.nextInt();
 			GuessingGame test = new GuessingGame(haha);
-			out.println(test);
+			test.playGame();
+			System.out.println(test);
+			System.out.println("Do you want to play again? ");
 			response = keyboard.next().charAt(0);
+			
 		}while (response != 'n');
 		
 
