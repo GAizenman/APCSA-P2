@@ -29,15 +29,11 @@ public class TriangleThree
 
 	public String getLetter()
 	{
-		for (int i = 0; i <= size; i++){
-			String cool = "";
+		String cool;
+		for (int i = size; i > 0; i--){
 			while (cool.length() < i){
-				cool = cool + letter;
+				
 			}
-			while (cool.length() < size){
-				cool = " " + cool;
-			}
-			System.out.println(cool);
 		}
 		return "#";
 	}

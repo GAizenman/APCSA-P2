@@ -16,11 +16,10 @@ public class Lab11c
 	   Scanner keyboard = new Scanner(System.in);
 	   
 	   int haha = keyboard.nextInt();
-	   String lol = keyboard.next();
-	   TriangleThree test = new TriangleThree(haha, lol);
-	   test.getLetter();
+	   TriangleThree test = new TriangleThree(haha);
+	   test.getLet();
 	   System.out.println(test);
 
-//Dude make sure to log out - your boy E-dog
+
 	}
 }
