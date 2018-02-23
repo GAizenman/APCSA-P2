@@ -19,36 +19,36 @@ public class RomanNumeral
 
 	public RomanNumeral(String str)
 	{
-		
-		roman = str;
-		
+
+
+
 	}
 
 	public RomanNumeral(Integer orig)
 	{
-		
-		number = orig;
+
+
 
 	}
 
 	public void setNumber(Integer num)
 	{
-		
-		number = num;
-		
+
+
+
+
+
 	}
 
 	public void setRoman(String rom)
 	{
-		
-		roman = rom;
-		
+
+
+
 	}
 
-	public int getNumber()
+	public Integer getNumber()
 	{
-		number = 0;
-		for (int i = 0; i < LETTERS.length; i++)
 		return number;
 	}
 
