@@ -49,6 +49,9 @@ public class Grades
 
 
 	//toString method
+	public String toString(){
+		
+	}
 
 
 

@@ -11,14 +11,6 @@ public class Lab14d
 	public static void main( String args[] )
 	{
 		//add test cases
-		Scanner keyboard = new Scanner(System.in);
-		   
-		int haha = keyboard.nextInt();
-		String lol = keyboard.next();
-		Grades test = new Grades();
-		test.getAverage();
-		System.out.println(test);
-		
 		
 		
 	}
