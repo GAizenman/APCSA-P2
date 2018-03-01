@@ -87,8 +87,8 @@ public class Deck {
 			return null;
 		}
 		else{
-			size -= 1;
 			return cards[size];
+			size -= 1;
 		}
 	}
 
