@@ -48,11 +48,11 @@ public class MadLib
 					out.print(getRandomNoun() + " ");
 				}
 				
-				else if(symbol.equals("@")){
+				else if(symbol.equals("#")){
 					out.print(getRandomVerb() + " ");
 				}
 				
-				else if(symbol.equals("!")){
+				else{
 					out.print(getRandomAdjective() + " ");
 				}
 			}
@@ -115,23 +115,20 @@ public class MadLib
 
 	public String getRandomVerb()
 	{
-		int num1 = (int)Math.random()*(verbs.size() + 0);
 	
-		return verbs.get(num1);
+		return "";
 	}
 	
 	public String getRandomNoun()
 	{
-		int num2 = (int)Math.random()*(nouns.size() + 0);
 		
-		return nouns.get(num2);
+		return "";
 	}
 	
 	public String getRandomAdjective()
 	{
-		int num3 = (int)Math.random()*(adjectives.size() + 0);
 		
-		return adjectives.get(num3);
+		return "";
 	}		
 
 	public String toString()

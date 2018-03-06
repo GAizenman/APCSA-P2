@@ -48,11 +48,11 @@ public class MadLib
 					out.print(getRandomNoun() + " ");
 				}
 				
-				else if(symbol.equals("@")){
+				else if(symbol.equals("#")){
 					out.print(getRandomVerb() + " ");
 				}
 				
-				else if(symbol.equals("!")){
+				else{
 					out.print(getRandomAdjective() + " ");
 				}
 			}
