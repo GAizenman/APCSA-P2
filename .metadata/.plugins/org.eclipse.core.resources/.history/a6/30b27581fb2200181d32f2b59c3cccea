@@ -42,20 +42,17 @@ public class MadLib
 			
 			
 			while(file.hasNext()){
-				String test = file.next();
-				if(test.equals("#")){
+				
+				if(file.next() == ("#")){
 					out.print(getRandomNoun() + " ");
 				}
 				
-				else if(test.equals("@")){
+				else if(file.next() == ("@")){
 					out.print(getRandomVerb() + " ");
 				}
 				
-				else if(test.equals("&")){
+				else if(file.next() == ("!")){
 					out.print(getRandomAdjective() + " ");
-				}
-				else{
-					out.print(test + " ");
 				}
 			}
 		
@@ -64,7 +61,7 @@ public class MadLib
 		}
 		catch(Exception e)
 		{
-			out.println("Houston, we have a problem!");
+			out.println("Houston we have a problem!");
 		}
 		
 	}
@@ -73,7 +70,7 @@ public class MadLib
 	{
 		try{
 		
-			Scanner scan = new Scanner(new File("C:\\Users\\aizenmang2856\\Desktop\\Github\\APCSA-P2\\Unit10\\src\\nouns.dat"));
+			Scanner scan = new Scanner(new File("nouns.dat"));
 			while (scan.hasNextLine()){
 				nouns.add(scan.nextLine());
 			}
@@ -81,7 +78,6 @@ public class MadLib
 		}
 		catch(Exception e)
 		{
-			System.out.println("Houston, we have a problem!");
 		}	
 		
 	}
@@ -90,7 +86,7 @@ public class MadLib
 	{
 		try{
 	
-			Scanner scan = new Scanner(new File("C:\\Users\\aizenmang2856\\Desktop\\Github\\APCSA-P2\\Unit10\\src\\verbs.dat"));
+			Scanner scan = new Scanner(new File("verbs.dat"));
 			while (scan.hasNextLine()){
 				verbs.add(scan.nextLine());
 			}
@@ -98,7 +94,6 @@ public class MadLib
 		}
 		catch(Exception e)
 		{
-			System.out.println("Houston, we have a problem!");
 		}
 	}
 
@@ -106,7 +101,7 @@ public class MadLib
 	{
 		try{
 	
-			Scanner scan = new Scanner(new File("C:\\Users\\aizenmang2856\\Desktop\\Github\\APCSA-P2\\Unit10\\src\\adjectives.dat"));
+			Scanner scan = new Scanner(new File("adjectives.dat"));
 			while (scan.hasNextLine()){
 				adjectives.add(scan.nextLine());
 			}
@@ -114,34 +109,32 @@ public class MadLib
 		}
 		catch(Exception e)
 		{
-			System.out.println("Houston, we have a problem!");
 		}
 	}
 
 	public String getRandomVerb()
 	{
-		int num1 = (int)((Math.random())*(verbs.size() - 1));
+		int num1 = (int)Math.random()*(verbs.size() + 0);
 	
 		return verbs.get(num1);
 	}
 	
 	public String getRandomNoun()
 	{
-		int num2 = (int)((Math.random())*(nouns.size() - 1));
+		int num2 = (int)Math.random()*(nouns.size() + 0);
 		
 		return nouns.get(num2);
 	}
 	
 	public String getRandomAdjective()
 	{
-		int num3 = (int)((Math.random())*(adjectives.size() - 1));
+		int num3 = (int)Math.random()*(adjectives.size() + 0);
 		
 		return adjectives.get(num3);
 	}		
 
 	public String toString()
 	{
-		String output = "";
-	   return output;
+	   return "\n\n\n";
 	}
 }

@@ -42,20 +42,17 @@ public class MadLib
 			
 			
 			while(file.hasNext()){
-				String test = file.next();
-				if(test.equals("#")){
+				
+				if(file.next() == ("#")){
 					out.print(getRandomNoun() + " ");
 				}
 				
-				else if(test.equals("@")){
+				else if(file.next() == ("@")){
 					out.print(getRandomVerb() + " ");
 				}
 				
-				else if(test.equals("&")){
+				else if(file.next() == ("!")){
 					out.print(getRandomAdjective() + " ");
-				}
-				else{
-					out.print(test + " ");
 				}
 			}
 		
@@ -120,28 +117,27 @@ public class MadLib
 
 	public String getRandomVerb()
 	{
-		int num1 = (int)((Math.random())*(verbs.size() - 1));
+		int num1 = (int)Math.random()*(verbs.size() + 0);
 	
 		return verbs.get(num1);
 	}
 	
 	public String getRandomNoun()
 	{
-		int num2 = (int)((Math.random())*(nouns.size() - 1));
+		int num2 = (int)Math.random()*(nouns.size() + 0);
 		
 		return nouns.get(num2);
 	}
 	
 	public String getRandomAdjective()
 	{
-		int num3 = (int)((Math.random())*(adjectives.size() - 1));
+		int num3 = (int)Math.random()*(adjectives.size() + 0);
 		
 		return adjectives.get(num3);
 	}		
 
 	public String toString()
 	{
-		String output = "";
-	   return output;
+	   return "\n\n\n";
 	}
 }

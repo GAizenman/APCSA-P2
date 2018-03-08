@@ -48,14 +48,14 @@ public class MadLib
 				}
 				
 				else if(test.equals("@")){
-					out.print(getRandomVerb() + " ");
+					out.print(" " + getRandomVerb() + " ");
 				}
 				
 				else if(test.equals("&")){
 					out.print(getRandomAdjective() + " ");
 				}
 				else{
-					out.print(test + " ");
+					out.print(test);
 				}
 			}
 		
@@ -120,21 +120,21 @@ public class MadLib
 
 	public String getRandomVerb()
 	{
-		int num1 = (int)((Math.random())*(verbs.size() - 1));
+		int num1 = (int)(Math.random()*(verbs.size() - 1));
 	
 		return verbs.get(num1);
 	}
 	
 	public String getRandomNoun()
 	{
-		int num2 = (int)((Math.random())*(nouns.size() - 1));
+		int num2 = (int)(Math.random()*(nouns.size() - 1));
 		
 		return nouns.get(num2);
 	}
 	
 	public String getRandomAdjective()
 	{
-		int num3 = (int)((Math.random())*(adjectives.size() - 1));
+		int num3 = (int)(Math.random()*(adjectives.size() - 1));
 		
 		return adjectives.get(num3);
 	}		

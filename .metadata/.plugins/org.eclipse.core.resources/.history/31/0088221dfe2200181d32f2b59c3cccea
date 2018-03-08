@@ -11,8 +11,8 @@ public class Lab16d
 	public static void main( String args[] )
 	{
 		//make a new MadLib
-		MadLib test = new MadLib("C:\\Users\\aizenmang2856\\Desktop\\Github\\APCSA-P2\\Unit10\\src\\story.dat");
+		MadLib myMadLib = new MadLib("H:\\Users\\aizenmang2856\\Desktop\\Github\\APCSA-P2\\Unit10\\src\\madlib.dat");
 		
-		out.println(test);
+		out.println(myMadLib);
 	}
 }
