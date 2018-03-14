@@ -38,53 +38,56 @@ public class Student
 	public void setGrades(String gradeList)
 	{
 
-		
+		myGrades = new Grades(gradeList);
 		
 	}
 	
 	public void setGrade(int spot, double grade)
 	{
 
-
+		myGrades.setGrade(spot, grade);
+		
 	}
 
 	public String getName()
 	{
-		return "";
+		return myName;
 	}
 	
 	public int getNumGrades()
 	{
-		return 0;
+		
+		return myGrades.getNumGrades();
 	}
 
 	public double getSum()
 	{
-		return 0.0;
+		return myGrades.getSum();
 	}
 	
 	public double getAverage()
 	{
-		return 0.0;
+		return getSum() / getNumGrades();
 	}
 
 	public double getAverageMinusLow()
 	{
-		return 0.0;
+		return (getSum() - myGrades.getLowGrade()) / (getNumGrades() - 1);
 	}
 	
 	public double getHighGrade()
 	{
-		return 0.0;		
+		return myGrades.getHighGrade();		
 	}
 	
 	public double getLowGrade()
 	{
-		return 0.0;	
+		return myGrades.getLowGrade();	
 	}
 	
 	public String toString()
 	{
-		return "";
+		String output = getName() + " = ";
+		return output + myGrades.toString();
 	}	
 }
