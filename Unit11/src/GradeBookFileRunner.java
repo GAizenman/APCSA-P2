@@ -20,7 +20,7 @@ public class GradeBookFileRunner
 		String name = file.nextLine();
 		int classSize = file.nextInt();
 		file.nextLine();
-		Class test = new Class(name, classSize);
+		ClassList test = new ClassList(name, classSize);
 		for (int i = 0; i < classSize; i++){
 			test.addStudent(i,new Student(file.nextLine(), file.nextLine()));
 		}
@@ -33,6 +33,14 @@ public class GradeBookFileRunner
 		out.println(String.format("Class Average = %.2f",test.getClassAverage()));		
 		
 
-
+		test.sorting();
+		out.println("");
+		out.println(test);
+		out.println("");
+		out.println("Failure List = " + test.getFailureList(70));	
+		out.println("Highest Average = " + test.getStudentWithHighestAverage());
+		out.println("Lowest Average = " + test.getStudentWithLowestAverage());
+								
+		out.println(String.format("Class Average = %.2f",test.getClassAverage()));	
 	}		
 }
