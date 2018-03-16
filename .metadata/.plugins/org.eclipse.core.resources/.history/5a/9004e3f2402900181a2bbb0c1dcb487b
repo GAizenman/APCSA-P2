@@ -77,19 +77,20 @@ public class Monster implements Comparable
 	//creates a new copy of this Object
 	public Object clone()
 	{
-		Monster lol = new Monster(myHeight, myWeight, myAge);
-		return lol;
+		Monster lol = new Monster();
+		return new Monster();
 	}
 
 	public boolean equals( Object obj )
 	{
 		Monster boo = (Monster)obj;
-		if (getHeight() == boo.getHeight() && getWeight() == boo.getWeight() && getAge() == boo.getAge()){
-			return true;
+		boolean haha = false;
+		if (getHeight() == obj.getHeight() && getWeight() == obj.getWeight() && getAge() == obj.getAge()){
+			
 		}
 
 
-		return false;
+		return haha;
 	}
 
 	public int compareTo( Object obj )

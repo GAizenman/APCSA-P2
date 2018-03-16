@@ -77,8 +77,8 @@ public class Monster implements Comparable
 	//creates a new copy of this Object
 	public Object clone()
 	{
-		Monster lol = new Monster(myHeight, myWeight, myAge);
-		return lol;
+		Monster lol = new Monster();
+		return new Monster();
 	}
 
 	public boolean equals( Object obj )

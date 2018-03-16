@@ -13,7 +13,6 @@ public class Word implements Comparable<Word>
 	public Word( String s )
 	{
 
-		
 
 	}
 
