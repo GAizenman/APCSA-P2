@@ -29,7 +29,7 @@ public class Lab18d
 		}
 
 
-		System.out.println(hi);
+
 
 	}
 }

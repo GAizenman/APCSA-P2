@@ -46,7 +46,7 @@ public class Word implements Comparable<Word>
 				num ++;
 			}
 			else if (rhs.getWord().length() == cool.get(i).length()){
-				if (alp.indexOf(rhs.getWord().substring(0,1)) > alp.indexOf(cool.get(i).substring(0,1))){
+				if (alp.indexOf(rhs.getWord().substring(0,1)) < alp.indexOf(cool.get(i).substring(0,1))){
 					num ++;
 				}
 			}

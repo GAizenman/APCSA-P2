@@ -38,20 +38,13 @@ public class Word implements Comparable<Word>
 	public int compareTo( Word rhs )
 	{
 		int num = 0;
-		String alp = "abcdefghijklmnopqrstuvwxyz";
 		if (cool.size() == 0)
 			cool.add(word);
 		for (int i = 0; i < cool.size(); i++){
 			if (rhs.getWord().length() > cool.get(i).length()){
 				num ++;
 			}
-			else if (rhs.getWord().length() == cool.get(i).length()){
-				if (alp.indexOf(rhs.getWord().substring(0,1)) > alp.indexOf(cool.get(i).substring(0,1))){
-					num ++;
-				}
-			}
 		}
-		
 		
 		cool.add(num, rhs.getWord());
 		
@@ -62,7 +55,7 @@ public class Word implements Comparable<Word>
 	{
 		String output = "";
 		for (int i = 0; i < cool.size(); i++){
-			output = output + "\n" + cool.get(i);
+			output = output + "/n" + cool.get(i);
 		}
 		return output;
 	}

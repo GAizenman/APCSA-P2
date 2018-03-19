@@ -16,20 +16,18 @@ public class Lab18d
 	{
 		Scanner file = new Scanner(new File("lab18d.dat"));
 		String s = "";
-		String h = "";
 
 		
 		int size = file.nextInt();
 		Word hi = new Word(s);
 		file.nextLine();
 		for(int i = 0; i < size; i++){
-			h = file.nextLine();
-			Word hello = new Word(h);
-			hi.compareTo(hello);
+			s = file.nextLine();
+			hi = new Word(s);
 		}
 
 
-		System.out.println(hi);
+
 
 	}
 }
