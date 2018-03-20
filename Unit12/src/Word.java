@@ -39,8 +39,8 @@ public class Word implements Comparable<Word>
 	{
 		int num = 0;
 		String alp = "abcdefghijklmnopqrstuvwxyz";
-		if (cool.size() == 0)
-			cool.add(word);
+		/*if (cool.size() == 0)
+			cool.add(word);*/
 		for (int i = 0; i < cool.size(); i++){
 			if (rhs.getWord().length() > cool.get(i).length()){
 				num ++;
