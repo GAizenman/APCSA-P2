@@ -31,7 +31,7 @@ public class Word1 implements Comparable<Word>
 		int vc=0;
 		
 		for(int i = 0; i < word.length(); i++){
-			if (vowels.indexOf(word.charAt(1)) >= 0){
+			if (vowels.indexOf(word.substring(i, i+1)) >= 0){
 				vc ++;
 			}
 		}
@@ -47,12 +47,18 @@ public class Word1 implements Comparable<Word>
 	{
 
 		int num = 0;
-		Word1 lol = new Word1();
-		if (cool.size() == 0)
-			cool.add(word);
+		String alp = "abcdefghijklmnopqrstuvwxyz";
+		/*if (cool.size() == 0)
+			cool.add(word);*/
 		for (int i = 0; i < cool.size(); i++){
-			if (rhs.numVowels() > cool.get(i).numVowels()){
+			Word1 haha = new Word1(cool.get(i));
+			if (rhs.numVowels() > haha.numVowels()){
 				num ++;
+			}
+			else if (rhs.numVowels() == haha.numVowels()){
+				if (alp.indexOf(rhs.getWord().substring(0,1)) > alp.indexOf(cool.get(i).substring(0,1))){
+					num ++;
+				}
 			}
 		}
 		
@@ -62,6 +68,17 @@ public class Word1 implements Comparable<Word>
 
 	public String toString()
 	{
-		return word;
+		String output = "";
+		for (int i = 0; i < cool.size(); i++){
+			output = output + "\n" + cool.get(i);
+		}
+		return output;
 	}
+
+	@Override
+	public int compareTo(Word o) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
