@@ -114,12 +114,12 @@ public class ElevensBoard extends Board {
 		boolean queen = false;
 		boolean king = false;
 		
-		for(int i = 0; i < selectedCards.size(); i++){
-			if (cardAt(selectedCards.get(i)).rank() == "jack")
+		for(int i = 0; i < selectedCards.get(i); i++){
+			if (selectedCards.get(i) == 11)
 				jack = true;
-			else if (cardAt(selectedCards.get(i)).rank() == "queen")
+			else if (selectedCards.get(i) == 12)
 				queen = true;
-			else if (cardAt(selectedCards.get(i)).rank() == "king")
+			else if (selectedCards.get(i) == 13)
 				king = true;
 		}
 		if (jack && queen && king)
