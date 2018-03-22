@@ -47,14 +47,6 @@ public class Maze
 	{
 		if (r >= 0 && c >= 0 && c < len && r < len){
 			maze[r][c] = 0;
-			if (c == 5)
-				return true;
-			else{
-				hasExitPath(r+1, c);
-				hasExitPath(r-1, c);
-				hasExitPath(r, c+1);
-				hasExitPath(r, c-1);
-			}
 		}
 
 		return false;
@@ -62,20 +54,12 @@ public class Maze
 
 	public String toString()
 	{
-		String output = "";
-		for(int i = 0; i < len; i++){
-			for(int j = 0; j < len; j++){
-				output += maze[i][j] + " ";
-				if (j == len)
-					output += "/n";
-			}
-		}
-		output += "/n";
-		if (hasExitPath(0, 0))
-			output += "exit found";
-		else
-			output += "exit not found";
-		
+		String output="";
+
+
+
+
+
 		return output;
 	}
 }

@@ -62,19 +62,10 @@ public class Maze
 
 	public String toString()
 	{
-		String output = "";
-		for(int i = 0; i < len; i++){
-			for(int j = 0; j < len; j++){
-				output += maze[i][j] + " ";
-				if (j == len)
-					output += "/n";
-			}
-		}
-		output += "/n";
+		String output="exit not found";
+		
 		if (hasExitPath(0, 0))
-			output += "exit found";
-		else
-			output += "exit not found";
+			output = "exit found";
 		
 		return output;
 	}

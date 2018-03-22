@@ -13,19 +13,5 @@ public class Lab21i
 {
 	public static void main( String args[] ) throws IOException
 	{
-		
-		
-		Scanner file = new Scanner(new File("lab21i.dat"));
-		int num = file.nextInt();
-		file.nextLine();
-		String hi = "";
-		while (file.hasNextLine()){
-			hi = file.nextLine();
-			Maze lol = new Maze(num, hi);
-			num++;
-			System.out.println(lol.toString());
-		}
-		
-		
 	}
 }

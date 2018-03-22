@@ -73,8 +73,6 @@ public class Maze
 		output += "/n";
 		if (hasExitPath(0, 0))
 			output += "exit found";
-		else
-			output += "exit not found";
 		
 		return output;
 	}
