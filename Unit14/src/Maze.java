@@ -13,6 +13,7 @@ public class Maze
 {
    private int[][] maze;
    private int len;
+   private boolean end = false;
 
 	public Maze()
 	{
@@ -24,17 +25,18 @@ public class Maze
 
 	public Maze(int size, String line)
 	{
+		maze = new int[size][size];
 		len = size;
 		int lol = 0;
 		for(int i = 0; i < size; i++){
 			for(int j = 0; j < size; j++){
 				if (line.charAt(lol) == '1'){
 					maze[i][j] = 1;
-					lol++;
+					lol += 2;
 				}
 				else{
 					maze[i][j] = 0;
-					lol++;
+					lol += 2;
 				}
 				
 			}
@@ -43,21 +45,23 @@ public class Maze
 
 	}
 
-	public boolean hasExitPath(int r, int c)
+	public void hasExitPath(int r, int c)
 	{
-		if (r >= 0 && c >= 0 && c < len && r < len){
-			maze[r][c] = 0;
-			if (c == 5)
-				return true;
+		if (r >= 0 && c >= 0 && c < len && r < len && maze[r][c] == 1){
+			
+			if (c == len - 1)
+				end = true;
 			else{
+				int save = maze[r][c];
+				maze[r][c] = 0;
 				hasExitPath(r+1, c);
-				hasExitPath(r-1, c);
 				hasExitPath(r, c+1);
+				hasExitPath(r-1, c);
 				hasExitPath(r, c-1);
+				maze[r][c] = save;
 			}
 		}
 
-		return false;
 	}
 
 	public String toString()
@@ -66,15 +70,14 @@ public class Maze
 		for(int i = 0; i < len; i++){
 			for(int j = 0; j < len; j++){
 				output += maze[i][j] + " ";
-				if (j == len)
-					output += "/n";
+				if (j == len - 1)
+					output += "\n";
 			}
 		}
-		output += "/n";
-		if (hasExitPath(0, 0))
-			output += "exit found";
+		if (end == true)
+			output += "exit found" + "\n";
 		else
-			output += "exit not found";
+			output += "exit not found" + "\n";
 		
 		return output;
 	}

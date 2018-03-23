@@ -1,3 +1,9 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name - Gabriel Aizenman
+//Date -3/23/18
+//Class - per 2
+//Lab  -
+
 import java.util.List;
 import java.util.ArrayList;
 
@@ -5,6 +11,12 @@ import java.util.ArrayList;
  * The ElevensBoard class represents the board in a game of Elevens.
  */
 public class ElevensBoard extends Board {
+	
+	public static void main(String[] args) {
+		Board board = new ElevensBoard();
+		CardGameGUI gui = new CardGameGUI(board);
+		gui.displayGame();
+	}
 
 	/**
 	 * The size (number of cards) on the board.
@@ -40,6 +52,7 @@ public class ElevensBoard extends Board {
 	 */
 	 public ElevensBoard() {
 	 	super(BOARD_SIZE, RANKS, SUITS, POINT_VALUES);
+	 	System.out.println("Gabriel Aizenman, Period 2, 3/23/2018, Computer 32");
 	 }
 
 	/**
@@ -98,6 +111,19 @@ public class ElevensBoard extends Board {
 			}
 		}
 		return false;
+		/*
+		if (selectedCards.size() < 3)
+			return false;
+
+		for (int i = 0; i < selectedCards.size(); i++){
+			for (int j = i; j < selectedCards.size(); j++){
+				for (int k = j; k < selectedCards.size(); k++){
+					if ((cardAt(selectedCards.get(j)).pointValue() + cardAt(selectedCards.get(i)).pointValue() + cardAt(selectedCards.get(k)).pointValue()) == 11)
+						return true;
+				}
+			}
+		}
+		return false;*/
 	}
 
 	/**
@@ -110,19 +136,19 @@ public class ElevensBoard extends Board {
 	 */
 	private boolean containsJQK(List<Integer> selectedCards) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 9 *** */
-		boolean jack = false;
-		boolean queen = false;
-		boolean king = false;
+		int jack = 0;
+		int queen = 0;
+		int king = 0;
 		
 		for(int i = 0; i < selectedCards.size(); i++){
 			if (cardAt(selectedCards.get(i)).rank() == "jack")
-				jack = true;
+				jack++;
 			else if (cardAt(selectedCards.get(i)).rank() == "queen")
-				queen = true;
+				queen++;
 			else if (cardAt(selectedCards.get(i)).rank() == "king")
-				king = true;
+				king++;
 		}
-		if (jack && queen && king)
+		if (jack == 2 || queen == 2 || king == 2)
 			return true;
 		return false;
 	}

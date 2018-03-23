@@ -19,13 +19,20 @@ public class Lab21i
 		int num = file.nextInt();
 		file.nextLine();
 		String hi = "";
-		while (file.hasNextLine()){
+		hi = file.nextLine();
+		Maze lol = new Maze(num, hi);
+		System.out.println(lol.toString());
+		/*while (file.hasNextLine()){
 			hi = file.nextLine();
 			Maze lol = new Maze(num, hi);
-			num++;
 			System.out.println(lol.toString());
-		}
-		
-		
+			num = file.nextInt();
+			file.nextLine();
+		}*/
+		num = file.nextInt();
+		file.nextLine();
+		hi = file.nextLine();
+		Maze coo = new Maze(num, hi);
+		System.out.println(coo.toString());
 	}
 }
