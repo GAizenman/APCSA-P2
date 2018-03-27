@@ -14,8 +14,7 @@ public class QuickSort
 	public static void quickSort(Comparable[] list)
 	{
 
-
-
+		
 
 	}
 
