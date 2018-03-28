@@ -1,0 +1,64 @@
+//© A+ Computer Science  -  www.apluscompsci.com
+//Name -
+//Date -
+//Class - 
+//Lab  - 
+
+import static java.lang.System.*;
+import java.util.Arrays;		//use Arrays.toString() to help print out the array
+
+public class QuickSort
+{
+	private static int passCount;
+
+	public static void quickSort(Comparable[] list)
+	{
+
+		passCount = 0;
+		quickSort(list, 0, list.length - 1);
+
+	}
+
+
+	private static void quickSort(Comparable[] list, int low, int high)
+	{
+
+		while (low < high)
+		{
+			int split = partition(list, low, high);
+			quickSort(list, low, split);
+			quickSort(list, split+1, high);
+			low++;
+		}
+
+
+	}
+
+
+	private static int partition(Comparable[] list, int low, int high)
+	{
+
+		int piv = (int)list[0];
+		int bot = (int)list[low] - 1;
+		int top = (int)list[high] + 1;
+		
+		while(bot < top){
+			while (bot < piv){
+				bot++;
+			}
+			while (top > piv){
+				top--;
+			}
+			if (bot > top)
+				return top;
+			int hi = (int)list[low];
+			int hello = (int)list[high];
+			list[low] = hello;
+			list[high] = hi;
+			
+		}
+		
+		
+		return 0;
+	}
+}
