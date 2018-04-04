@@ -23,9 +23,28 @@ import java.awt.Font;
 public class Pong extends Canvas implements KeyListener, Runnable
 {
 	
-	//a = accelerate
-	//c = color change
+	
+	
+	
+	
+	/**
+	 * IF YOU WANT TO PLAY     ACCELERATING BALL  	TYPE 'a' IN "PLAY" INSTANCE
+	 * IF YOU WANT TO PLAY    COLOR-CHANGING BALL	TYPE 'c' IN "PLAY" INSTANCE
+	 * IF YOU WANT TO PLAY       REGULAR BALL       TYPE 'r' IN "PLAY" INSTANCE
+	 */
+	
+	
 	char play = 'a';
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
 	
 	//instance variables
 	private static final long serialVersionUID = 1L;

@@ -23,8 +23,7 @@ import java.awt.Font;
 public class Pong extends Canvas implements KeyListener, Runnable
 {
 	
-	//a = accelerate
-	//c = color change
+	
 	char play = 'a';
 	
 	//instance variables
