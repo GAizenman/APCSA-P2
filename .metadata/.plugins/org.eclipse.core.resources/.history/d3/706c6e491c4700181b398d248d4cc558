@@ -22,7 +22,6 @@ public class AlienHorde {
 		aliens.add(al);
 	}
 
-
 	public void moveEmAll() {
 		tick++;
 		for (Alien al : aliens) {
@@ -56,7 +55,6 @@ public class AlienHorde {
 				} catch (Exception e) {
 				}
 	}
-	
 
 	public void checkShipDeath(Ship ship) {
 		for (int i = 0; i < aliens.size(); i++)

@@ -22,7 +22,6 @@ public class AlienHorde {
 		aliens.add(al);
 	}
 
-
 	public void moveEmAll() {
 		tick++;
 		for (Alien al : aliens) {

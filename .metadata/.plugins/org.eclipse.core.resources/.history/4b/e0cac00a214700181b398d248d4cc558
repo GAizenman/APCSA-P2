@@ -10,18 +10,19 @@ import java.util.List;
 
 public class AlienHorde {
 	private List<Alien> aliens;
+	private List<MegaAlien> megaA;
 	private int size;
 	private int tick;
 
 	public AlienHorde(int size) {
 		aliens = new ArrayList<Alien>();
+		megaA = new ArrayList<MegaAlien>();
 		this.size = size;
 	}
 
 	public void add(Alien al) {
 		aliens.add(al);
 	}
-
 
 	public void moveEmAll() {
 		tick++;

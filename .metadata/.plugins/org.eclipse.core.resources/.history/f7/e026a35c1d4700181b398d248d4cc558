@@ -22,7 +22,6 @@ public class AlienHorde {
 		aliens.add(al);
 	}
 
-
 	public void moveEmAll() {
 		tick++;
 		for (Alien al : aliens) {
@@ -57,6 +56,18 @@ public class AlienHorde {
 				}
 	}
 	
+	public void removeDeadMega(List<Ammo> shots) {
+		for (int i = 0; i < shots.size(); i++)
+			for (int j = 0; j < aliens.size(); j++)
+				try {
+					if (shots.get(i).isCollidingMT(aliens.get(j))) {
+						shots.remove(i);
+						aliens.remove(j);
+						size--;
+					}
+				} catch (Exception e) {
+				}
+	}
 
 	public void checkShipDeath(Ship ship) {
 		for (int i = 0; i < aliens.size(); i++)

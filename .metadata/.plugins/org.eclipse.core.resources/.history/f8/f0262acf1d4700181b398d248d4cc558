@@ -22,7 +22,6 @@ public class AlienHorde {
 		aliens.add(al);
 	}
 
-
 	public void moveEmAll() {
 		tick++;
 		for (Alien al : aliens) {
@@ -48,7 +47,7 @@ public class AlienHorde {
 		for (int i = 0; i < shots.size(); i++)
 			for (int j = 0; j < aliens.size(); j++)
 				try {
-					if (shots.get(i).isCollidingMT(aliens.get(j))) {
+					if (shots.get(i).isCollidingMT(aliens.get(j)) && j < 1) {
 						shots.remove(i);
 						aliens.remove(j);
 						size--;
