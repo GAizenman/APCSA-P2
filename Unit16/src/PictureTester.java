@@ -9,6 +9,14 @@
 public class PictureTester
 {
   /** Method to test zeroBlue */
+	public static void testSharpen(int x, int y, int w, int h)
+	{
+	     Picture redMoto = new Picture("redMotorcycle.jpg");
+	     redMoto.explore();
+	     redMoto.sharpen(x,y,w,h);
+	     redMoto.explore();
+	}
+
   public static void testZeroBlue()
   {
     Picture beach = new Picture("beach.jpg");
@@ -170,18 +178,18 @@ public class PictureTester
     // to run
     //testZeroBlue();
     //testKeepOnlyBlue();
-    testKeepOnlyRed();
+    //testKeepOnlyRed();
     //testKeepOnlyGreen();
     //testNegate();
     //testGrayscale();
-    testFixUnderwater();
+    //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorTemple();
     //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
-    testCopy();
+    //testCopy();
     //testEdgeDetection();
     //testEdgeDetection2();
     //testChromakey();
@@ -193,5 +201,6 @@ public class PictureTester
 	//testMirrorVerticalRightToLeft();
 	//testMirrorHorizontalBottomToTop();
 	//testMirrorHorizontal();
+	  testSharpen(50,50,500,400); 
   }
 }
