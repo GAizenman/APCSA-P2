@@ -30,7 +30,7 @@ public class MegaAlien extends MovingThing {
 		super(x, y, w, h);
 		setSpeed(s);
 		try {
-			image = ImageIO.read(new File("alien.JPG"));
+			image = ImageIO.read(new File("megaAlien.jpg"));
 		} catch (Exception e) {
 		}
 	}

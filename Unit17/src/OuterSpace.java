@@ -26,10 +26,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 
 	private Ship ship;
 	private Bullets shots;
-
+	
+	
 	private int tick;
 
 	private AlienHorde horde;
+	private MegaAlienHorde megaHorde;
 	private boolean[] keys;
 	private BufferedImage back;
 
@@ -41,15 +43,20 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 		ship = new Ship(400, 500, 35, 35, 2);
 		
 		int hordeWidth = 7;
-		int hordeHeight = 4;
+		int hordeHeight = 3;
 		int hordeSize = hordeWidth * hordeHeight;
 		
 		horde = new AlienHorde(hordeSize);
+		megaHorde = new MegaAlienHorde(7);
 		shots = new Bullets();
 		
 		for(int x = 8; x < StarFighter.WIDTH - 100; x += (StarFighter.WIDTH) / 8)
-			for(int y = 22; y < StarFighter.HEIGHT / 1.5; y += (StarFighter.HEIGHT / 1.5) / 4)
+			for(int y = 22; y < StarFighter.HEIGHT / 1.5 - 100; y += (StarFighter.HEIGHT / 1.5) / 4)
 				horde.add(new Alien(x + 20, y, 25, 25, 1));
+		
+		for(int x = 8; x < StarFighter.WIDTH - 100; x += (StarFighter.WIDTH) / 8)
+			for(int y = 325; y < StarFighter.HEIGHT / 1.5; y += (StarFighter.HEIGHT / 1.5) / 4)
+				megaHorde.add(new MegaAlien(x + 20, y, 25, 25, 1));
 
 		this.addKeyListener(this);
 		new Thread(this).start();
@@ -98,22 +105,26 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable {
 
 		// update
 		horde.moveEmAll();
+		megaHorde.moveEmAll();
 		shots.moveEmAll();
 		horde.removeDeadOnes(shots.getList());
+		megaHorde.removeDeadOnes(shots.getList());
 		shots.cleanEmUp();
 		horde.checkShipDeath(ship);
+		megaHorde.checkShipDeath(ship);
 
-		if (horde.getSize() == 0) {
+		if (horde.getSize() == 0 && megaHorde.getSize() == 0) {
 			System.out.println("You win!");
 			System.exit(0);
 		}
 
 		// render
 		graphToBack.setColor(Color.WHITE);
-		graphToBack.drawString(""+horde.getSize(), 740, 530);
+		graphToBack.drawString(""+horde.getSize() + megaHorde.getSize(), 740, 530);
 		ship.draw(graphToBack);
 		shots.drawEmAll(graphToBack);
 		horde.drawEmAll(graphToBack);
+		megaHorde.drawEmAll(graphToBack);
 
 		// draw back image
 		twoDGraph.drawImage(back, null, 0, 0);
