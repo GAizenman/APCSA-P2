@@ -32,8 +32,8 @@ public class Ammo extends MovingThing {
 	}
 
 	public void draw(Graphics window) {
-		window.setColor(Color.YELLOW);
-		window.fillRect(getX(), getY(),10, 10);
+		window.setColor(Color.RED);
+		window.fillRect(getX(), getY(),4, 10);
 	}
 
 	public void move(String direction) {
