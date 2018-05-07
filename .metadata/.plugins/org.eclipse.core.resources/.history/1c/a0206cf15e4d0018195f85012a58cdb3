@@ -501,7 +501,7 @@ public class Picture extends SimplePicture
   
   
   public void sharpen(int startRow, int startCol, int w, int h){
-	  System.out.println("gabi");
+	  
 	  Pixel[][] pixels = this.getPixels2D();
       Pixel topLeft = null;
       Pixel thePixel = null;
