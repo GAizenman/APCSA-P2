@@ -8,12 +8,14 @@
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.List;
 import java.awt.Canvas;
 //import java.awt.event.ActionEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.KeyEvent;
 import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 import java.awt.Font;
 
 //import java.awt.event.ActionListener;
@@ -30,6 +32,8 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 	private Ball ball;
 
 	private Paddle leftPaddle;
+	
+	private ArrayList<Block> blocks = new ArrayList<Block>();
 	// private Paddle rightPaddle;
 	private Wall wall;
 
@@ -40,6 +44,8 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 	private int leftScore;
 	// private int rightScore;
 
+	
+	
 	// starting position of ball
 	private static final int BALL_Xi = 380;
 	private static final int BALL_Yi = 265;
@@ -55,6 +61,8 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		leftScore = 0;
 		// rightScore = 0;
 
+		blocks();
+		
 		setBackground(Color.WHITE);
 		setVisible(true);
 
@@ -101,6 +109,11 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		// draw objects
 		ball.moveAndDraw(graphToBack);
 		leftPaddle.draw(graphToBack);
+		
+		for(int i = 0; i < blocks.size(); i++){
+			blocks.get(i).draw(graphToBack);
+		}
+		
 		// rightPaddle.draw(graphToBack);
 
 		// draw lower wall
@@ -112,7 +125,38 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		graphToBack.clearRect(52, 556, 708, 248);
 		graphToBack.setColor(Color.BLACK);
 		// graphToBack.drawString("Player 1 Score: "+ leftScore);
-
+/*
+		int x = 0;
+		int y = 120;
+		for (int i = 0; i < 10; i++){
+			blocks.add(new Block(x, 0, 45, 45, Color.GREEN));
+			blocks.add(new Block(x, 500, 45, 45, Color.GREEN));
+			x += 80;
+		}
+		x = 0;
+		for (int i = 0; i < 10; i++){
+			blocks.add(new Block(x, 50, 45, 45, Color.GREEN));
+			blocks.add(new Block(x, 450, 45, 45, Color.GREEN));
+			x += 80;
+		}
+		
+		y =125;
+		
+		for (int i = 0; i < 4; i++){
+			blocks.add(new Block(0, y, 45, 45, Color.GREEN));
+			blocks.add(new Block(725, y, 45, 45, Color.GREEN));
+			y += 80;
+		}
+		
+		y = 125;
+		
+		for (int i = 0; i < 4; i++){
+			blocks.add(new Block(50, y, 45, 45, Color.GREEN));
+			blocks.add(new Block(675, y, 45, 45, Color.GREEN));
+			y += 80;
+		}
+		*/
+		
 		// IF BALL COLLIDE LEFT WALL
 		/*
 		 * if(ball.didCollideLeft(wall)) { //rightScore++;
@@ -169,20 +213,61 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			ball.setXSpeed(-ball.getXSpeed());
 		}
 
-		// IF BALL COLLIDE LEFT PADDLE
-		if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() && ball.getY() <= leftPaddle.getY()
-				&& (ball.getY() <= leftPaddle.getY() + leftPaddle.getHeight()
-				|| ball.getY() + ball.getHeight() >= leftPaddle.getY()
-						&& ball.getY() + ball.getHeight() < leftPaddle.getY() + leftPaddle.getHeight())) {
+		// IF BALL COLLIDE LEFT
+		if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - ball.getXSpeed()
+				&& (ball.getX() >= leftPaddle.getX() + leftPaddle.getWidth() + ball.getXSpeed() - 5)
+				&& (ball.getY() + ball.getHeight() >= leftPaddle.getY())
+				&& (ball.getY() <=  leftPaddle.getY() + leftPaddle.getHeight())
+				&& (ball.getXSpeed() < 0)
+				) {
 			// no idea what this is
-			if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - Math.abs(ball.getXSpeed()))
-				ball.setYSpeed(-ball.getYSpeed());
-			// make ball bounce
-			else
-				ball.setXSpeed(-ball.getXSpeed());
+			ball.setXSpeed(-ball.getXSpeed());
+			
 			// if(play == 'a') subIncSpeed();
 		}
+		
+		//if ball collide right
+		if (ball.getX() + ball.getWidth() >= leftPaddle.getX() - leftPaddle.getSpeed() - ball.getXSpeed()
+				&& (ball.getX() + ball.getWidth() <= leftPaddle.getX() + ball.getXSpeed() + leftPaddle.getSpeed() )
+				&& (ball.getY() + ball.getHeight() >= leftPaddle.getY())
+				&& (ball.getY() <=  leftPaddle.getY() + leftPaddle.getHeight())
+				&& (ball.getXSpeed() > 0)
+				) {
+			// no idea what this is
+			ball.setXSpeed(-ball.getXSpeed());
+			
+			// if(play == 'a') subIncSpeed();
+		}
+		
+		// if ball collides top
 
+		if (ball.getY() <= leftPaddle.getY() + leftPaddle.getWidth() - ball.getYSpeed()
+				&& (ball.getY() >= leftPaddle.getY() + ball.getXSpeed())
+				&& (ball.getX() >= leftPaddle.getX())
+				&& (ball.getX() + ball.getWidth() <=  leftPaddle.getX() + leftPaddle.getHeight())
+				&& (ball.getYSpeed() < 0)
+				) {
+			// no idea what this is
+			ball.setYSpeed(-ball.getYSpeed());
+			
+			// if(play == 'a') subIncSpeed();
+		}
+		
+		//if ball collides bottom
+		
+		if (ball.getY() + ball.getWidth() >= leftPaddle.getY() - ball.getYSpeed() - leftPaddle.getSpeed()
+				&& (ball.getY() + ball.getWidth() <= leftPaddle.getY() + ball.getYSpeed() + leftPaddle.getSpeed() )
+				&& (ball.getX() >= leftPaddle.getX())
+				&& (ball.getX() + ball.getWidth() <=  leftPaddle.getX() + leftPaddle.getHeight())
+				&& (ball.getYSpeed() > 0)
+				) {
+			// no idea what this is
+			ball.setYSpeed(-ball.getYSpeed());
+			
+			// if(play == 'a') subIncSpeed();
+		}
+		
+		
 		/*else if (ball.getY() <= leftPaddle.getY() + leftPaddle.getWidth() && ball.getX() <= leftPaddle.getX()
 				&& (ball.getX() <= leftPaddle.getX() + leftPaddle.getHeight()
 						|| ball.getX() + ball.getHeight() >= leftPaddle.getX()
@@ -212,6 +297,8 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		 * 
 		 */
 		// MOVEMENT FOR PADDLES
+		
+		
 
 		if (keys[0] == true) {// left player
 			leftPaddle.moveUpAndDraw(graphToBack);
@@ -227,7 +314,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			leftPaddle.moveRightAndDraw(graphToBack);
 		}
 
-		System.out.println(ball.getXSpeed() + " " + ball.getYSpeed());
+		//System.out.println(ball.getXSpeed() + " " + ball.getYSpeed());
 
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
@@ -279,6 +366,39 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			}
 		} catch (Exception e) {
 			System.out.println("oops");
+		}
+	}
+	
+	
+	public void blocks() {
+		int x = 0;
+		int y = 120;
+		for (int i = 0; i < 10; i++){
+			blocks.add(new Block(x, 0, 45, 45, Color.GREEN));
+			blocks.add(new Block(x, 500, 45, 45, Color.GREEN));
+			x += 80;
+		}
+		x = 0;
+		for (int i = 0; i < 10; i++){
+			blocks.add(new Block(x, 50, 45, 45, Color.GREEN));
+			blocks.add(new Block(x, 450, 45, 45, Color.GREEN));
+			x += 80;
+		}
+		
+		y =125;
+		
+		for (int i = 0; i < 4; i++){
+			blocks.add(new Block(0, y, 45, 45, Color.GREEN));
+			blocks.add(new Block(725, y, 45, 45, Color.GREEN));
+			y += 80;
+		}
+		
+		y = 125;
+		
+		for (int i = 0; i < 4; i++){
+			blocks.add(new Block(50, y, 45, 45, Color.GREEN));
+			blocks.add(new Block(675, y, 45, 45, Color.GREEN));
+			y += 80;
 		}
 	}
 }

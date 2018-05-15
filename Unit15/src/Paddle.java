@@ -90,6 +90,6 @@ public class Paddle extends Block
 	}
 	   
 	public String toString() {
-		return super.toString() +" "+ getSpeed();
+		return super.toString();
 	}
 }
