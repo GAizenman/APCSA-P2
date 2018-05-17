@@ -32,7 +32,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 	private Ball ball;
 
 	private Paddle leftPaddle;
-	
+
 	private ArrayList<Block> blocks = new ArrayList<Block>();
 	// private Paddle rightPaddle;
 	private Wall wall;
@@ -41,11 +41,10 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 
 	private boolean[] keys;
 	private BufferedImage back;
-	private int leftScore;
+	private int score;
+	private int level;
 	// private int rightScore;
 
-	
-	
 	// starting position of ball
 	private static final int BALL_Xi = 380;
 	private static final int BALL_Yi = 265;
@@ -58,11 +57,12 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		// rightPaddle = new Paddle(760, 244, 10, 70, Color.YELLOW, 4);
 		wall = new Wall(0, 770, 10, 550);
 		keys = new boolean[4];
-		leftScore = 0;
+		score = 0;
+		level = 1;
 		// rightScore = 0;
 
 		blocks();
-		
+
 		setBackground(Color.WHITE);
 		setVisible(true);
 
@@ -109,11 +109,11 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		// draw objects
 		ball.moveAndDraw(graphToBack);
 		leftPaddle.draw(graphToBack);
-		
-		for(int i = 0; i < blocks.size(); i++){
+
+		for (int i = 0; i < blocks.size(); i++) {
 			blocks.get(i).draw(graphToBack);
 		}
-		
+
 		// rightPaddle.draw(graphToBack);
 
 		// draw lower wall
@@ -125,38 +125,26 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		graphToBack.clearRect(52, 556, 708, 248);
 		graphToBack.setColor(Color.BLACK);
 		// graphToBack.drawString("Player 1 Score: "+ leftScore);
-/*
-		int x = 0;
-		int y = 120;
-		for (int i = 0; i < 10; i++){
-			blocks.add(new Block(x, 0, 45, 45, Color.GREEN));
-			blocks.add(new Block(x, 500, 45, 45, Color.GREEN));
-			x += 80;
-		}
-		x = 0;
-		for (int i = 0; i < 10; i++){
-			blocks.add(new Block(x, 50, 45, 45, Color.GREEN));
-			blocks.add(new Block(x, 450, 45, 45, Color.GREEN));
-			x += 80;
-		}
-		
-		y =125;
-		
-		for (int i = 0; i < 4; i++){
-			blocks.add(new Block(0, y, 45, 45, Color.GREEN));
-			blocks.add(new Block(725, y, 45, 45, Color.GREEN));
-			y += 80;
-		}
-		
-		y = 125;
-		
-		for (int i = 0; i < 4; i++){
-			blocks.add(new Block(50, y, 45, 45, Color.GREEN));
-			blocks.add(new Block(675, y, 45, 45, Color.GREEN));
-			y += 80;
-		}
-		*/
-		
+		/*
+		 * int x = 0; int y = 120; for (int i = 0; i < 10; i++){ blocks.add(new
+		 * Block(x, 0, 45, 45, Color.GREEN)); blocks.add(new Block(x, 500, 45,
+		 * 45, Color.GREEN)); x += 80; } x = 0; for (int i = 0; i < 10; i++){
+		 * blocks.add(new Block(x, 50, 45, 45, Color.GREEN)); blocks.add(new
+		 * Block(x, 450, 45, 45, Color.GREEN)); x += 80; }
+		 * 
+		 * y =125;
+		 * 
+		 * for (int i = 0; i < 4; i++){ blocks.add(new Block(0, y, 45, 45,
+		 * Color.GREEN)); blocks.add(new Block(725, y, 45, 45, Color.GREEN)); y
+		 * += 80; }
+		 * 
+		 * y = 125;
+		 * 
+		 * for (int i = 0; i < 4; i++){ blocks.add(new Block(50, y, 45, 45,
+		 * Color.GREEN)); blocks.add(new Block(675, y, 45, 45, Color.GREEN)); y
+		 * += 80; }
+		 */
+
 		// IF BALL COLLIDE LEFT WALL
 		/*
 		 * if(ball.didCollideLeft(wall)) { //rightScore++;
@@ -180,6 +168,10 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		 * //Terminates the console System.exit(0); }
 		 */
 
+		if (score == 135){
+			System.out.println("YOU WIN");
+			System.exit(0);
+		}
 		// IF BALL COLLIDE RIGHT WALL
 		/*
 		 * if(ball.didCollideRight(wall)) { leftScore++;
@@ -217,70 +209,60 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		if (ball.getX() <= leftPaddle.getX() + leftPaddle.getWidth() - ball.getXSpeed()
 				&& (ball.getX() >= leftPaddle.getX() + leftPaddle.getWidth() + ball.getXSpeed() - 5)
 				&& (ball.getY() + ball.getHeight() >= leftPaddle.getY())
-				&& (ball.getY() <=  leftPaddle.getY() + leftPaddle.getHeight())
-				&& (ball.getXSpeed() < 0)
-				) {
+				&& (ball.getY() <= leftPaddle.getY() + leftPaddle.getHeight()) && (ball.getXSpeed() < 0)) {
 			// no idea what this is
 			ball.setXSpeed(-ball.getXSpeed());
-			
+
 			// if(play == 'a') subIncSpeed();
 		}
-		
-		//if ball collide right
+
+		// if ball collide right
 		if (ball.getX() + ball.getWidth() >= leftPaddle.getX() - leftPaddle.getSpeed() - ball.getXSpeed()
-				&& (ball.getX() + ball.getWidth() <= leftPaddle.getX() + ball.getXSpeed() + leftPaddle.getSpeed() )
+				&& (ball.getX() + ball.getWidth() <= leftPaddle.getX() + ball.getXSpeed() + leftPaddle.getSpeed())
 				&& (ball.getY() + ball.getHeight() >= leftPaddle.getY())
-				&& (ball.getY() <=  leftPaddle.getY() + leftPaddle.getHeight())
-				&& (ball.getXSpeed() > 0)
-				) {
+				&& (ball.getY() <= leftPaddle.getY() + leftPaddle.getHeight()) && (ball.getXSpeed() > 0)) {
 			// no idea what this is
 			ball.setXSpeed(-ball.getXSpeed());
-			
+
 			// if(play == 'a') subIncSpeed();
 		}
-		
+
 		// if ball collides top
 
 		if (ball.getY() <= leftPaddle.getY() + leftPaddle.getWidth() - ball.getYSpeed()
-				&& (ball.getY() >= leftPaddle.getY() + ball.getXSpeed())
-				&& (ball.getX() >= leftPaddle.getX())
-				&& (ball.getX() + ball.getWidth() <=  leftPaddle.getX() + leftPaddle.getHeight())
-				&& (ball.getYSpeed() < 0)
-				) {
+				&& (ball.getY() >= leftPaddle.getY() + ball.getXSpeed()) && (ball.getX() >= leftPaddle.getX())
+				&& (ball.getX() + ball.getWidth() <= leftPaddle.getX() + leftPaddle.getHeight())
+				&& (ball.getYSpeed() < 0)) {
 			// no idea what this is
 			ball.setYSpeed(-ball.getYSpeed());
-			
+
 			// if(play == 'a') subIncSpeed();
 		}
-		
-		//if ball collides bottom
-		
+
+		// if ball collides bottom
+
 		if (ball.getY() + ball.getWidth() >= leftPaddle.getY() - ball.getYSpeed() - leftPaddle.getSpeed()
-				&& (ball.getY() + ball.getWidth() <= leftPaddle.getY() + ball.getYSpeed() + leftPaddle.getSpeed() )
+				&& (ball.getY() + ball.getWidth() <= leftPaddle.getY() + ball.getYSpeed() + leftPaddle.getSpeed())
 				&& (ball.getX() >= leftPaddle.getX())
-				&& (ball.getX() + ball.getWidth() <=  leftPaddle.getX() + leftPaddle.getHeight())
-				&& (ball.getYSpeed() > 0)
-				) {
+				&& (ball.getX() + ball.getWidth() <= leftPaddle.getX() + leftPaddle.getHeight())
+				&& (ball.getYSpeed() > 0)) {
 			// no idea what this is
 			ball.setYSpeed(-ball.getYSpeed());
-			
+
 			// if(play == 'a') subIncSpeed();
 		}
-		
-		
-		/*else if (ball.getY() <= leftPaddle.getY() + leftPaddle.getWidth() && ball.getX() <= leftPaddle.getX()
-				&& (ball.getX() <= leftPaddle.getX() + leftPaddle.getHeight()
-						|| ball.getX() + ball.getHeight() >= leftPaddle.getX()
-								&& ball.getX() + ball.getHeight() < leftPaddle.getX() + leftPaddle.getHeight())) {
-			// no idea what this is
-			if (ball.getY() <= leftPaddle.getY() + leftPaddle.getWidth() - Math.abs(ball.getYSpeed()))
-				ball.setXSpeed(-ball.getXSpeed());
-			// make ball bounce
-			else
-				ball.setYSpeed(-ball.getYSpeed());
-			// if(play == 'a') subIncSpeed();
-		}
-		*/
+
+		/*
+		 * else if (ball.getY() <= leftPaddle.getY() + leftPaddle.getWidth() &&
+		 * ball.getX() <= leftPaddle.getX() && (ball.getX() <= leftPaddle.getX()
+		 * + leftPaddle.getHeight() || ball.getX() + ball.getHeight() >=
+		 * leftPaddle.getX() && ball.getX() + ball.getHeight() <
+		 * leftPaddle.getX() + leftPaddle.getHeight())) { // no idea what this
+		 * is if (ball.getY() <= leftPaddle.getY() + leftPaddle.getWidth() -
+		 * Math.abs(ball.getYSpeed())) ball.setXSpeed(-ball.getXSpeed()); //
+		 * make ball bounce else ball.setYSpeed(-ball.getYSpeed()); // if(play
+		 * == 'a') subIncSpeed(); }
+		 */
 
 		// IF BALL COLLIDE RIGHT PADDLE
 		/*
@@ -297,9 +279,78 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 		 * 
 		 */
 		// MOVEMENT FOR PADDLES
-		
-		
 
+		// IF BALL COLLIDE LEFT
+		for (int i = 0; i < blocks.size(); i++) {
+			if (ball.getX() <= blocks.get(i).getX() + blocks.get(i).getWidth() - ball.getXSpeed()
+					&& (ball.getX() >= blocks.get(i).getX() + blocks.get(i).getWidth() + ball.getXSpeed() - 5)
+					&& (ball.getY() + ball.getHeight() >= blocks.get(i).getY())
+					&& (ball.getY() <= blocks.get(i).getY() + blocks.get(i).getHeight()) && (ball.getXSpeed() < 0)) {
+				// no idea what this is
+				ball.setXSpeed(-ball.getXSpeed());
+				blocks.get(i).setColor(Color.WHITE);
+				blocks.get(i).draw(graphToBack);
+				blocks.remove(i);
+				score++;
+
+				// if(play == 'a') subIncSpeed();
+			}
+
+			// if ball collide right
+			if (ball.getX() + ball.getWidth() >= blocks.get(i).getX() - ball.getXSpeed()
+					&& (ball.getX() + ball.getWidth() <= blocks.get(i).getX() + ball.getXSpeed())
+					&& (ball.getY() + ball.getHeight() >= blocks.get(i).getY())
+					&& (ball.getY() <= blocks.get(i).getY() + blocks.get(i).getHeight()) && (ball.getXSpeed() > 0)) {
+				// no idea what this is
+				ball.setXSpeed(-ball.getXSpeed());
+				blocks.get(i).setColor(Color.WHITE);
+				blocks.get(i).draw(graphToBack);
+				blocks.remove(i);
+				score++;
+
+				// if(play == 'a') subIncSpeed();
+			}
+
+			// if ball collides top
+
+			if (ball.getY() <= blocks.get(i).getY() + blocks.get(i).getWidth() - ball.getYSpeed()
+					&& (ball.getY() >= blocks.get(i).getY() + ball.getXSpeed()) && (ball.getX() >= blocks.get(i).getX())
+					&& (ball.getX() + ball.getWidth() <= blocks.get(i).getX() + blocks.get(i).getHeight())
+					&& (ball.getYSpeed() < 0)) {
+				// no idea what this is
+				ball.setXSpeed(-ball.getXSpeed());
+				blocks.get(i).setColor(Color.WHITE);
+				blocks.get(i).draw(graphToBack);
+				blocks.remove(i);
+				score++;
+
+				// if(play == 'a') subIncSpeed();
+			}
+
+			// if ball collides bottom
+
+			if (ball.getY() + ball.getWidth() >= blocks.get(i).getY() - ball.getYSpeed()
+					&& (ball.getY() + ball.getWidth() <= blocks.get(i).getY() + ball.getYSpeed())
+					&& (ball.getX() >= blocks.get(i).getX())
+					&& (ball.getX() + ball.getWidth() <= blocks.get(i).getX() + blocks.get(i).getHeight())
+					&& (ball.getYSpeed() > 0)) {
+				// no idea what this is
+				ball.setXSpeed(-ball.getXSpeed());
+				blocks.get(i).setColor(Color.WHITE);
+				blocks.get(i).draw(graphToBack);
+				blocks.remove(i);
+				score++;
+
+				// if(play == 'a') subIncSpeed();
+			}
+		}
+		if (score == 56){
+			blocks2();
+			score++;
+		}
+		
+		
+		
 		if (keys[0] == true) {// left player
 			leftPaddle.moveUpAndDraw(graphToBack);
 		}
@@ -314,7 +365,7 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			leftPaddle.moveRightAndDraw(graphToBack);
 		}
 
-		//System.out.println(ball.getXSpeed() + " " + ball.getYSpeed());
+		// System.out.println(ball.getXSpeed() + " " + ball.getYSpeed());
 
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
@@ -368,37 +419,88 @@ public class Pong extends Canvas implements KeyListener, Runnable {
 			System.out.println("oops");
 		}
 	}
-	
-	
+
 	public void blocks() {
 		int x = 0;
 		int y = 120;
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < 10; i++) {
 			blocks.add(new Block(x, 0, 45, 45, Color.GREEN));
 			blocks.add(new Block(x, 500, 45, 45, Color.GREEN));
 			x += 80;
 		}
 		x = 0;
-		for (int i = 0; i < 10; i++){
+		for (int i = 0; i < 10; i++) {
 			blocks.add(new Block(x, 50, 45, 45, Color.GREEN));
 			blocks.add(new Block(x, 450, 45, 45, Color.GREEN));
 			x += 80;
 		}
-		
-		y =125;
-		
-		for (int i = 0; i < 4; i++){
+
+		y = 125;
+
+		for (int i = 0; i < 4; i++) {
 			blocks.add(new Block(0, y, 45, 45, Color.GREEN));
 			blocks.add(new Block(725, y, 45, 45, Color.GREEN));
 			y += 80;
 		}
-		
+
 		y = 125;
-		
-		for (int i = 0; i < 4; i++){
+
+		for (int i = 0; i < 4; i++) {
 			blocks.add(new Block(50, y, 45, 45, Color.GREEN));
 			blocks.add(new Block(675, y, 45, 45, Color.GREEN));
 			y += 80;
 		}
 	}
+	
+	public void blocks2() {
+		int x = 0;
+		int y = 120;
+		for (int i = 0; i < 10; i++) {
+			blocks.add(new Block(x, 0, 45, 45, Color.GREEN));
+			blocks.add(new Block(x, 500, 45, 45, Color.GREEN));
+			x += 80;
+		}
+		x = 0;
+		for (int i = 0; i < 10; i++) {
+			blocks.add(new Block(x, 50, 45, 45, Color.GREEN));
+			blocks.add(new Block(x, 450, 45, 45, Color.GREEN));
+			x += 80;
+		}
+		
+		x = 0;
+		for (int i = 0; i < 10; i++) {
+			blocks.add(new Block(x, 100, 45, 45, Color.GREEN));
+			blocks.add(new Block(x, 400, 45, 45, Color.GREEN));
+			x += 80;
+		}
+
+		y = 175;
+
+		for (int i = 0; i < 3; i++) {
+			blocks.add(new Block(0, y, 45, 45, Color.GREEN));
+			blocks.add(new Block(725, y, 45, 45, Color.GREEN));
+			y += 75;
+		}
+
+		y = 175;
+
+		for (int i = 0; i < 3; i++) {
+			blocks.add(new Block(50, y, 45, 45, Color.GREEN));
+			blocks.add(new Block(675, y, 45, 45, Color.GREEN));
+			y += 75;
+		}
+		y = 175;
+		for (int i = 0; i < 3; i++) {
+			blocks.add(new Block(100, y, 45, 45, Color.GREEN));
+			blocks.add(new Block(625, y, 45, 45, Color.GREEN));
+			y += 75;
+		}
+	}
+	/*public void removeBlock(int i){
+		blocks.get(i).setColor(Color.WHITE);
+		blocks.remove(i);
+		for (int j = 0; j < blocks.size(); j++) {
+			blocks.get(j).draw(graphToBack);
+		}
+	}*/
 }
